@@ -95,7 +95,7 @@ main {
 }
 
 .prose p {
-  @apply text-white  leading-relaxed mb-6;
+  @apply text-white leading-relaxed mb-6;
 }
 
 .prose ul {
@@ -118,16 +118,22 @@ main {
   @apply border-l-4 border-[#6EACDA] pl-4 italic my-6 text-[#6EACDA];
 }
 
-.prose code {
-  @apply bg-[#03346E] text-white px-2 py-1 rounded text-sm;
-}
-
+/* Code block styling */
 .prose pre {
-  @apply bg-[#03346E] p-4 rounded-lg my-6 overflow-x-auto;
+  @apply bg-[#03346E] p-4 rounded-lg my-6 overflow-x-auto text-white;
+  background-color: #03346e !important;
 }
 
 .prose pre code {
-  @apply bg-transparent p-0;
+  @apply bg-transparent p-0 text-white;
+  background-color: transparent !important;
+  color: white !important;
+}
+
+.prose code {
+  @apply bg-[#03346E] text-white px-2 py-1 rounded text-sm;
+  background-color: #03346e !important;
+  color: white !important;
 }
 
 .prose img {

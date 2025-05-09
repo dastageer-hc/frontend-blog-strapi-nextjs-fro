@@ -45,10 +45,8 @@ export default async function BlogPage() {
                   <h2 className="text-xl font-semibold  dark:text-white mb-2">
                     {blog.title}
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-300 mb-2">
-                    By {blog.author}
-                  </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="s dark:text-gray-300 mb-2">By {blog.author}</p>
+                  <p className="text-sm text-gray-200">
                     {new Date(blog.publishedAt).toLocaleDateString()}
                   </p>
                 </div>
