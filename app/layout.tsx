@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import Navigation from './components/Navigation';
 import { Github, Linkedin } from 'lucide-react';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -18,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`text-gray-100 ${inter.className}`}>
+      <body className={`text-gray-100 `}>
         <div className="min-h-screen flex flex-col">
           <Navigation />
           <main className="flex-grow pt-16 shine-effect">
