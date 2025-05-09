@@ -3,47 +3,45 @@
 @tailwind utilities;
 
 :root {
-  --dot-color: rgba(156, 163, 175, 0.1);
-  --dot-size: 1px;
-  --dot-space: 24px;
+  --color-dark-navy: #021526;
+  --color-deep-blue: #03346e;
+  --color-sky-blue: #6eacda;
+  --color-light: #e2e2b6;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
 }
 
 body {
-  background-image: radial-gradient(
-      var(--dot-color) var(--dot-size),
-      transparent var(--dot-size)
-    ),
-    radial-gradient(
-      var(--dot-color) var(--dot-size),
-      transparent var(--dot-size)
-    );
-  background-position: 0 0, var(--dot-space) var(--dot-space);
-  background-size: calc(var(--dot-space) * 2) calc(var(--dot-space) * 2);
+  font-family:
+    var(--font-inter),
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--color-dark-navy);
+  color: var(--color-light);
   position: relative;
 }
 
 body::before {
-  content: "";
+  content: '';
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 50%
+  background: linear-gradient(
+    90deg,
+    rgba(2, 21, 38, 0.5) 0%,
+    rgba(3, 52, 110, 0.3) 100%
   );
   pointer-events: none;
-  z-index: 0;
-}
-
-.dark body::before {
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 255, 255, 0.05) 0%,
-    transparent 50%
-  );
+  z-index: 1;
 }
 
 main {
@@ -51,33 +49,61 @@ main {
   z-index: 1;
 }
 
+/* Base shine effect for all pages */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(110, 172, 218, 0.1) 50%,
+    transparent 100%
+  );
+  animation: shine 8s infinite linear;
+  pointer-events: none;
+}
+
+/* Glass effect container */
+.glass-container {
+  @apply backdrop-blur-sm bg-[#03346E]/20 border border-[#6EACDA]/20 rounded-lg;
+}
+
 /* Markdown Prose Styles */
 .prose {
-  @apply max-w-none;
+  @apply max-w-none glass-container p-6;
 }
 
 .prose h1 {
-  @apply text-4xl font-bold mb-4 text-gray-900 dark:text-white;
+  @apply text-4xl font-bold mb-8 text-white;
 }
 
 .prose h2 {
-  @apply text-3xl font-bold mb-3 text-gray-900 dark:text-white;
+  @apply text-3xl font-semibold mt-12 mb-6 text-white;
 }
 
 .prose h3 {
-  @apply text-2xl font-bold mb-3 text-gray-900 dark:text-white;
+  @apply text-2xl font-semibold mt-8 mb-4 text-white;
 }
 
 .prose p {
-  @apply mb-4 text-gray-700 dark:text-gray-300;
+  @apply text-white  leading-relaxed mb-6;
 }
 
 .prose ul {
-  @apply list-disc list-inside mb-4 text-gray-700 dark:text-gray-300;
+  @apply list-disc list-inside mb-6 text-white;
 }
 
 .prose ol {
-  @apply list-decimal list-inside mb-4 text-gray-700 dark:text-gray-300;
+  @apply list-decimal list-inside mb-6 text-white;
 }
 
 .prose li {
@@ -85,39 +111,72 @@ main {
 }
 
 .prose a {
-  @apply text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300;
+  @apply text-[#6EACDA] hover:text-white transition-colors duration-200;
 }
 
 .prose blockquote {
-  @apply border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-4 text-gray-700 dark:text-gray-300;
+  @apply border-l-4 border-[#6EACDA] pl-4 italic my-6 text-[#6EACDA];
 }
 
 .prose code {
-  @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm;
+  @apply bg-[#03346E] text-white px-2 py-1 rounded text-sm;
 }
 
 .prose pre {
-  @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto my-4;
+  @apply bg-[#03346E] p-4 rounded-lg my-6 overflow-x-auto;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
 }
 
 .prose img {
-  @apply rounded-lg my-4;
+  @apply rounded-lg my-6;
 }
 
 .prose hr {
-  @apply my-8 border-gray-200 dark:border-gray-700;
+  @apply my-8 border-[#6EACDA]/20;
+}
+
+/* Dark mode prose styles */
+.dark .prose {
+  color: rgb(var(--foreground-rgb));
+}
+
+.dark .prose strong {
+  color: rgb(var(--foreground-rgb));
+}
+
+.dark .prose a {
+  color: #60a5fa;
+}
+
+.dark .prose code {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgba(var(--foreground-rgb), 0.1);
+}
+
+.dark .prose pre {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgba(var(--foreground-rgb), 0.1);
+}
+
+.dark .prose blockquote {
+  color: rgb(var(--foreground-rgb));
+  border-left-color: rgb(var(--foreground-rgb));
+}
+
+.dark .prose hr {
+  border-color: rgba(var(--foreground-rgb), 0.1);
 }
 
 /* Custom Animations */
-@keyframes float {
+@keyframes shine {
   0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
+    background-position: -100% 0;
   }
   100% {
-    transform: translateY(0px);
+    background-position: 200% 0;
   }
 }
 
@@ -132,21 +191,17 @@ main {
   }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
 }
 
 /* Custom Utilities */
 .gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#6EACDA] to-[#E2E2B6];
 }
 
 .glass-effect {
-  @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-md;
+  @apply bg-gray-900/80 backdrop-blur-md;
 }
 
 /* Smooth Scrolling */
@@ -156,17 +211,32 @@ html {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
+  @apply bg-[#021526];
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+  @apply bg-[#03346E] rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400 dark:bg-gray-500;
+  @apply bg-[#6EACDA];
+}
+
+/* Navigation styling */
+nav {
+  @apply backdrop-blur-sm bg-[#021526]/90 border-b border-[#6EACDA]/20;
+}
+
+/* Footer styling */
+footer {
+  @apply backdrop-blur-sm bg-[#021526]/90 border-t border-[#6EACDA]/20;
+}
+
+/* Button styling */
+.btn {
+  @apply px-6 py-3 bg-[#03346E] hover:bg-[#6EACDA] text-white rounded-lg transition-colors duration-200 backdrop-blur-sm border border-[#6EACDA]/20;
 }
