@@ -40,5 +40,5 @@ jobs:
           project: "dastageerhc-frontend-bl-11"
           entrypoint: "jsr:@deno/nextjs-start"
           root: "."
-          include: .next, public
+          
           
