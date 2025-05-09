@@ -4,12 +4,6 @@ const API_URL =
   process.env.NEXT_PUBLIC_STRAPI_API_URL ||
   'https://funny-acoustics-800f9a702f.strapiapp.com';
 
-const api = axios.create({
-  baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
 
 
 
