@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
-import { getBlogPost, type Blog } from '@/app/services/api';
+import { getBlogPost } from '@/app/services/api';
 
 type Params = {
   params: { id: string };
