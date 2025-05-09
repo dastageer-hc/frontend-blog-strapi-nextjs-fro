@@ -204,20 +204,6 @@ main {
   @apply bg-gray-900/80 backdrop-blur-md;
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-[#021526];
-}
-
 ::-webkit-scrollbar-thumb {
   @apply bg-[#03346E] rounded-full;
 }
